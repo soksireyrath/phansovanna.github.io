@@ -1,14 +1,196 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Vanna</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
+    <script>
+        var operator, num1, num2, answer, txt;
+        var bool_afteroperation = true;
+        function fun(button) {
+            txt = document.getElementById("txt_Display");
+            switch (button.id) {
+                case "btn_1":
+                    clear();
+                    txt.value += "1";
+                    break;
+                case "btn_2":
+                    clear();
+                    txt.value += "2";
+                    break;
+                case "btn_3":
+                    clear();
+                    txt.value += "3";
+                    break;
+                case "btn_4":
+                    clear();
+                    txt.value += "4";
+                    break;
+                case "btn_5":
+                    clear();
+                    txt.value += "5";
+                    break;
+                case "btn_6":
+                    clear();
+                    txt.value += "6";
+                    break;
+                case "btn_7":
+                    clear();
+                    txt.value += "7";
+                    break;
+                case "btn_8":
+                    clear();
+                    txt.value += "8";
+                    break;
+                case "btn_9":
+                    clear();
+                    txt.value += "9";
+                    break;
+                case "btn_0":
+                    clear();
+                    if (txt.value != "0")
+                        txt.value += "0";
+                    break;
+                case "btn_plus":
+                    bool_afteroperation = true;
+                    after_operator();
+                    operator = '+';
+                    break;
+                case "btn_minus":
+                    after_operator();
+                    operator = '-';
+                    break;
+                case "btn_mul":
+                    after_operator();
+                    operator = '*';
+                    break;
+                case "btn_div":
+                    after_operator();
+                    operator = '/';
+                    break;
+                case "btn_equal":
+                    operation();
+                    break;
+                case "btn_Cls":
+                    bool_afteroperation=true;
+                    txt.value="0";
+                    break;
+                case "btn_Del":
+                    var st=txt.value;
+                    if(st.length-1>0){
+                    txt.value="";
+                    for(var i=0;i<st.length-1;i++)
+                        txt.value+=st[i];
+                }else 
+                {
+                    txt.value="0";
+                    bool_afteroperation=true;
+                }
+                break;
+            }
+        }
+        function clear() {
+            if (bool_afteroperation)
+                txt.value = "";
+            bool_afteroperation = false;
+        }
+
+        function after_operator() {
+            num1 = parseFloat(txt.value);
+            txt.value = 0;
+            bool_afteroperation = true;
+        }
+        function operation() {
+            num2 = parseFloat(txt.value);
+            switch (operator) {
+                case '+':
+                    answer = num1 + num2;
+                    break;
+                case '-':
+                    answer = num1 - num2;
+                    break;
+                case '*':
+                    answer = num1 * num2;
+                    break;
+                case '/':
+                    answer = num1 / num2;
+                    break;
+            }
+            if (num2 == 0 && operator == '/')
+                txt.value = "Error";
+            else txt.value = answer;
+            bool_afteroperation = true;
+        }
+    </script>
+    <style>
+        *
+            {
+                padding: 0;
+                margin: 0;
+            }
+            .container
+            {
+                background-color: wheat;
+                margin: 10%;
+                padding: 5%;
+                text-align: center;     
+            }
+            .row
+            {
+                display: block;
+            }
+            input
+            {
+                text-size-adjust: 25px;
+                text-align: right;
+                width: 400px;
+            }
+            button
+            {
+                margin: 1%;
+                border-radius: 10px;
+                width: 100px;
+                height: 30px;
+            }
+        </style>
 </head>
+
 <body>
-    
+    <div class="container">
+        <div>
+            <input type="text" id="txt_Display">
+        </div>
+        <div>
+            <div class="row">
+                <button onclick="fun(this)" id="btn_Del">Delete</button>
+                <button onclick="fun(this)" id="btn_Cls">Clear</button>
+            </div>
+            <div class="row">
+                <button onclick="fun(this)" id="btn_7">7</button>
+                <button onclick="fun(this)" id="btn_8">8</button>
+                <button onclick="fun(this)" id="btn_9">9</button>
+                <button onclick="fun(this)" id="btn_div">/</button>
+            </div>
+            <div class="row">
+                <button onclick="fun(this)" id="btn_4">4</button>
+                <button onclick="fun(this)" id="btn_5">5</button>
+                <button onclick="fun(this)" id="btn_6">6</button>
+                <button onclick="fun(this)" id="btn_mul">x</button>
+            </div>
+            <div class="row">
+                <button onclick="fun(this)" id="btn_1">1</button>
+                <button onclick="fun(this)" id="btn_2">2</button>
+                <button onclick="fun(this)" id="btn_3">3</button>
+                <button onclick="fun(this)" id="btn_minus">-</button>
+            </div>
+            <div class="row">
+                <button onclick="fun(this)" id="btn_point">.</button>
+                <button onclick="fun(this)" id="btn_0">0</button>
+                <button onclick="fun(this)" id="btn_equal">=</button>
+                <button onclick="fun(this)" id="btn_plus" onmouseover="">+</button>
+            </div>
+        </div>
+    </div>
+
+
 </body>
+
 </html>
